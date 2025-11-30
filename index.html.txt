@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Martínez Store - Ropa para caballero</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Martínez Store</h1>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#sobre-nosotros">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Remeras con estilo para caballeros</h2>
+    <p>Diseños únicos, buena calidad y los mejores precios.</p>
+    <a href="#productos" class="btn-principal">Ver catálogo</a>
+  </section>
+
+  <section id="productos" class="productos">
+    <h2>Nuestras remeras</h2>
+    <div class="grid-productos">
+      <article class="producto">
+        <img src="https://via.placeholder.com/300x300" alt="Remera diseño 1">
+        <h3>Remera diseño 1</h3>
+        <p>Algodón 100% - Talles S al XXL</p>
+        <span class="precio">Gs. 80.000</span>
+        <button>Consultar por WhatsApp</button>
+      </article>
+
+      <article class="producto">
+        <img src="https://via.placeholder.com/300x300" alt="Remera diseño 2">
+        <h3>Remera diseño 2</h3>
+        <p>Algodón 100% - Talles S al XXL</p>
+        <span class="precio">Gs. 85.000</span>
+        <button>Consultar por WhatsApp</button>
+      </article>
+
+      <article class="producto">
+        <img src="https://via.placeholder.com/300x300" alt="Remera diseño 3">
+        <h3>Remera diseño 3</h3>
+        <p>Algodón 100% - Talles S al XXL</p>
+        <span class="precio">Gs. 90.000</span>
+        <button>Consultar por WhatsApp</button>
+      </article>
+    </div>
+  </section>
+
+  <section id="sobre-nosotros" class="sobre-nosotros">
+    <h2>Sobre Martínez Store</h2>
+    <p>
+      Somos una tienda de ropa para caballero enfocada en remeras con diseños únicos.
+      Trabajamos con materiales de calidad y atención personalizada.
+    </p>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <h2>Contacto</h2>
+    <p>Hacemos envíos en todo Paraguay.</p>
+    <p><strong>WhatsApp:</strong> +595 9XX XXX XXX</p>
+    <p><strong>Instagram:</strong> @martinezstore</p>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Martínez Store - Todos los derechos reservados</p>
+  </footer>
+</body>
+</html>
