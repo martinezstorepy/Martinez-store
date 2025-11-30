@@ -5,15 +5,12 @@
     <title>Panel de administración - Martínez Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Opcional: usar tu mismo CSS general -->
     <link rel="stylesheet" href="styles.css" />
 
     <style>
         body {
             background-color: #000;
             color: #f5f5f5;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            margin: 0;
         }
 
         .admin-wrapper {
@@ -60,7 +57,9 @@
             color: #f5f5f5;
         }
 
-        input, textarea {
+        input[type="text"],
+        input[type="number"],
+        textarea {
             width: 100%;
             padding: 8px 10px;
             border-radius: 8px;
@@ -167,16 +166,6 @@
             text-align: right;
         }
 
-        .pill {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 999px;
-            font-size: 11px;
-            background: #222;
-            color: #b38f00;
-        }
-
-        /* LOGIN */
         #login-section {
             text-align: center;
         }
@@ -202,6 +191,33 @@
         a.volver:hover {
             text-decoration: underline;
         }
+
+        .nota {
+            font-size: 12px;
+            color: #c9c9c9;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            color: #f5f5f5;
+            font-size: 13px;
+        }
+
+        input[type="file"]::file-selector-button {
+            border: none;
+            border-radius: 999px;
+            padding: 6px 12px;
+            margin-right: 10px;
+            background: #b38f00;
+            color: #000;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            filter: brightness(1.08);
+        }
     </style>
 </head>
 <body>
@@ -211,15 +227,14 @@
                 <div class="admin-title">Panel de administración</div>
                 <div class="admin-subtitle">Martínez Store · Gestión de remeras</div>
             </div>
-            <span class="badge">Versión inicial</span>
+            <span class="badge">Solo administrador</span>
         </div>
 
-        <!-- LINK PARA VOLVER A LA TIENDA -->
         <p class="text-right" style="margin-top:-8px; margin-bottom:16px;">
             <a href="index.html" class="volver">← Volver a la tienda</a>
         </p>
 
-        <!-- SECCIÓN LOGIN -->
+        <!-- LOGIN -->
         <section id="login-section" class="section">
             <img src="logo.png" alt="Martínez Store" class="logo-mini" />
             <p style="margin-bottom: 12px;">Acceso solo para administrador.</p>
@@ -233,9 +248,13 @@
             </p>
         </section>
 
-        <!-- CONTENIDO ADMIN (OCULTO HASTA LOGIN) -->
+        <!-- CONTENIDO ADMIN -->
         <section id="admin-section" class="section" style="display:none;">
             <h2 class="section-title">Nuevo producto / Editar producto</h2>
+
+            <p class="nota" style="margin-bottom:10px;">
+                ⚠ Los productos e imágenes se guardan solo en este dispositivo (localStorage).
+            </p>
 
             <form id="product-form">
                 <input type="hidden" id="product-index" value="-1" />
@@ -247,24 +266,30 @@
                     </div>
                     <div>
                         <label for="precio">Precio (Gs)</label>
-                        <input type="number" id="precio" required min="0" step="1000" placeholder="Ej: 120000" />
+                        <input type="number" id="precio" required min="0" step="1000" placeholder="Ej: 85000" />
                     </div>
                 </div>
 
                 <div class="grid-2" style="margin-top: 10px;">
                     <div>
                         <label for="categoria">Categoría</label>
-                        <input type="text" id="categoria" placeholder="Ej: Clásica, Premium, Oferta" />
+                        <input type="text" id="categoria" placeholder="Ej: Talle P, M, G, XL" />
                     </div>
                     <div>
-                        <label for="imagen">URL de la imagen</label>
-                        <input type="text" id="imagen" placeholder="https://... (link de la imagen)" />
+                        <label for="talles">Talles disponibles (separados por coma)</label>
+                        <input type="text" id="talles" placeholder="Ej: P,M,G,XL" />
                     </div>
                 </div>
 
                 <div style="margin-top:10px;">
+                    <label for="imagenArchivo">Imagen del producto (desde tu galería)</label>
+                    <input type="file" id="imagenArchivo" accept="image/*" />
+                    <p class="nota">Si no eliges una imagen, se usará el logo por defecto.</p>
+                </div>
+
+                <div style="margin-top:10px;">
                     <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" placeholder="Ej: Remera negra con estampado dorado, 100% algodón."></textarea>
+                    <textarea id="descripcion" placeholder="Ej: Remera de algodón premium."></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar producto</button>
@@ -274,9 +299,6 @@
 
         <section id="lista-section" class="section" style="display:none;">
             <h2 class="section-title">Lista de productos</h2>
-            <p style="font-size:13px; color:#c9c9c9; margin-top:-4px; margin-bottom:10px;">
-                Los productos se guardan en tu navegador (localStorage). Luego podemos conectar esto con la tienda pública.
-            </p>
 
             <div id="sin-productos" class="text-center" style="padding:16px; font-size:14px; color:#c9c9c9;">
                 Todavía no cargaste ningún producto.
@@ -289,6 +311,7 @@
                             <th>Nombre</th>
                             <th>Categoría</th>
                             <th>Precio</th>
+                            <th>Talles</th>
                             <th>Imagen</th>
                             <th class="text-right">Acciones</th>
                         </tr>
