@@ -1,13 +1,13 @@
 // ==============================
 //  Panel de admin - Martínez Store
 //  Guarda productos en localStorage
+//  con imagen subida desde el dispositivo
 // ==============================
 
 const ADMIN_PASSWORD = "martinez2024"; // cámbiala si querés
-
 const STORAGE_KEY = "productosMartinezStore";
 
-// Elementos del DOM
+// DOM
 const loginSection = document.getElementById("login-section");
 const loginForm = document.getElementById("login-form");
 const passwordInput = document.getElementById("password");
@@ -21,9 +21,9 @@ const productIndexInput = document.getElementById("product-index");
 const nombreInput = document.getElementById("nombre");
 const precioInput = document.getElementById("precio");
 const categoriaInput = document.getElementById("categoria");
-const imagenInput = document.getElementById("imagen");
 const tallesInput = document.getElementById("talles");
 const descripcionInput = document.getElementById("descripcion");
+const imagenArchivoInput = document.getElementById("imagenArchivo");
 
 const btnGuardar = document.getElementById("btn-guardar");
 const btnCancelar = document.getElementById("btn-cancelar");
@@ -107,7 +107,7 @@ function renderTabla(productos) {
 
         const tdImagen = document.createElement("td");
         if (p.imagen) {
-            tdImagen.innerHTML = `<a href="${p.imagen}" target="_blank" style="color:#b38f00; font-size:12px;">Ver imagen</a>`;
+            tdImagen.innerHTML = `<span style="font-size:11px; color:#b38f00;">✔ Imagen cargada</span>`;
         } else {
             tdImagen.textContent = "-";
         }
@@ -147,30 +147,48 @@ productForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const productos = obtenerProductos();
-
-    const nuevoProducto = {
-        nombre: nombreInput.value.trim(),
-        precio: precioInput.value.trim(),
-        categoria: categoriaInput.value.trim(),
-        imagen: imagenInput.value.trim(),
-        descripcion: descripcionInput.value.trim(),
-        talles: tallesInput.value
-            .split(",")
-            .map(t => t.trim().toUpperCase())
-            .filter(t => t !== "")
-    };
-
     const index = Number(productIndexInput.value);
 
-    if (index === -1) {
-        productos.push(nuevoProducto);
-    } else {
-        productos[index] = nuevoProducto;
+    // función que guarda realmente (para usar con o sin imagen nueva)
+    function guardarConImagen(imagenFinal) {
+        const nuevoProducto = {
+            nombre: nombreInput.value.trim(),
+            precio: precioInput.value.trim(),
+            categoria: categoriaInput.value.trim(),
+            descripcion: descripcionInput.value.trim(),
+            talles: tallesInput.value
+                .split(",")
+                .map(t => t.trim().toUpperCase())
+                .filter(t => t !== ""),
+            imagen: imagenFinal || (index !== -1 && productos[index] ? productos[index].imagen : "")
+        };
+
+        if (index === -1) {
+            productos.push(nuevoProducto);
+        } else {
+            productos[index] = nuevoProducto;
+        }
+
+        guardarProductos(productos);
+        renderTabla(productos);
+        limpiarFormulario();
     }
 
-    guardarProductos(productos);
-    renderTabla(productos);
-    limpiarFormulario();
+    // si el usuario eligió un archivo nuevo, lo leemos
+    if (imagenArchivoInput.files && imagenArchivoInput.files[0]) {
+        const file = imagenArchivoInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const base64 = event.target.result; // data:image/...
+            guardarConImagen(base64);
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        // no cambió la imagen, usamos la que ya tenía (o ninguna)
+        guardarConImagen(null);
+    }
 });
 
 btnCancelar.addEventListener("click", () => {
@@ -182,9 +200,9 @@ function limpiarFormulario() {
     nombreInput.value = "";
     precioInput.value = "";
     categoriaInput.value = "";
-    imagenInput.value = "";
     tallesInput.value = "";
     descripcionInput.value = "";
+    imagenArchivoInput.value = "";
     btnGuardar.textContent = "Guardar producto";
     btnCancelar.style.display = "none";
 }
@@ -201,9 +219,9 @@ function editarProducto(index) {
     nombreInput.value = p.nombre || "";
     precioInput.value = p.precio || "";
     categoriaInput.value = p.categoria || "";
-    imagenInput.value = p.imagen || "";
     tallesInput.value = p.talles ? p.talles.join(",") : "";
     descripcionInput.value = p.descripcion || "";
+    imagenArchivoInput.value = ""; // por seguridad el navegador no permite pre-cargar archivos
 
     btnGuardar.textContent = "Actualizar producto";
     btnCancelar.style.display = "inline-block";
