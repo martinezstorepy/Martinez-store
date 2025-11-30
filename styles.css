@@ -1,5 +1,4 @@
-/* ==== ESTILOS PREMIUM FONDO NEGRO + DORADO ==== */
-
+/* ==== ESTILO PREMIUM NEGRO + DORADO ==== */
 * {
   box-sizing: border-box;
 }
@@ -7,50 +6,51 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #000; /* Fondo negro total */
-  color: #d4af37;        /* Dorado premium */
-}
-
-/* HEADER */
-
-.header {
   background-color: #000;
   color: #d4af37;
-  padding: 15px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #d4af37;
 }
 
-.logo-container {
+/* ==== HEADER CENTRADO ==== */
+.header {
+  background-color: #000;
+  padding: 50px 0 30px 0;
+  border-bottom: 1px solid #d4af37;
+  text-align: center;
+}
+
+.header-center {
   display: flex;
+  flex-direction: column; /* Logo arriba, menú abajo */
   align-items: center;
+  justify-content: center;
 }
 
 .logo {
-  width: 160px; /* Cambia a 180, 200, etc si lo querés más grande */
-  display: block;
+  width: 300px; /* Ajustá el tamaño del logo a gusto */
+  max-width: 90%;
+  margin-bottom: 20px;
 }
 
-.nav a {
+.nav-center {
+  margin-top: 10px;
+}
+
+.nav-center a {
   color: #d4af37;
-  margin-left: 20px;
+  margin: 0 20px;
+  font-size: 1.3rem;
   text-decoration: none;
   font-weight: bold;
 }
 
-.nav a:hover {
-  color: #ffffff;
+.nav-center a:hover {
+  color: #fff;
 }
 
-/* HERO */
-
+/* ==== HERO ==== */
 .hero {
   text-align: center;
   padding: 60px 20px;
-  background-color: #000;
-  color: #d4af37;
 }
 
 .hero h2 {
@@ -58,37 +58,26 @@ body {
   margin-bottom: 10px;
 }
 
-.hero p {
-  margin-bottom: 20px;
-}
-
 .btn-principal {
   display: inline-block;
   padding: 12px 25px;
-  background-color: #d4af37; /* Dorado */
+  background-color: #d4af37;
   color: #000;
+  border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 4px;
   transition: 0.3s;
 }
 
 .btn-principal:hover {
-  background-color: #b8952d; /* Dorado más oscuro */
+  background-color: #b8952d;
 }
 
-/* PRODUCTOS */
-
+/* ==== PRODUCTOS ==== */
 .productos {
   padding: 40px 20px;
   max-width: 1100px;
   margin: 0 auto;
-}
-
-.productos h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #d4af37;
 }
 
 .grid-productos {
@@ -98,12 +87,12 @@ body {
 }
 
 .producto {
-  background-color: #111; /* Negro suave */
+  background-color: #111;
   border: 1px solid #d4af37;
-  border-radius: 6px;
   padding: 15px;
+  border-radius: 6px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(212,175,55,0.3); /* Sombras doradas */
+  box-shadow: 0 2px 5px rgba(212,175,55,0.3);
 }
 
 .producto img {
@@ -111,78 +100,51 @@ body {
   border-radius: 6px;
 }
 
-.producto h3 {
-  margin: 10px 0 5px;
-  color: #d4af37;
-}
-
-.producto p {
-  margin: 0 0 10px;
-  color: #d4af37;
-}
-
 .precio {
-  display: block;
   font-weight: bold;
   margin-bottom: 10px;
-  font-size: 1.1rem;
 }
 
-.producto button {
+.btn-whatsapp {
+  display: inline-block;
   padding: 10px 15px;
-  border: none;
-  background-color: #d4af37;
+  background-color: #25d366;
+  border-radius: 4px;
+  text-decoration: none;
   color: #000;
   font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
   transition: 0.3s;
 }
 
-.producto button:hover {
-  background-color: #b8952d;
+.btn-whatsapp:hover {
+  background-color: #1eb257;
 }
 
-/* SECCIONES DE TEXTO */
-
+/* ==== SECCIONES ==== */
 .sobre-nosotros,
 .contacto {
   padding: 40px 20px;
+  text-align: center;
   max-width: 800px;
   margin: 0 auto;
-  color: #d4af37;
 }
 
-.sobre-nosotros h2,
-.contacto h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #d4af37;
-}
-
-/* FOOTER */
-
+/* ==== FOOTER ==== */
 .footer {
+  background-color: #000;
   text-align: center;
   padding: 15px;
-  background-color: #000;
-  color: #d4af37;
   border-top: 1px solid #d4af37;
-  margin-top: 30px;
 }
 
-/* RESPONSIVO */
-
+/* ==== RESPONSIVO ==== */
 @media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .logo {
+    width: 220px;
   }
 
-  .nav a {
-    margin-left: 0;
-    margin-right: 15px;
+  .nav-center a {
+    margin: 10px;
+    font-size: 1.1rem;
   }
 }
-
