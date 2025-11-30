@@ -1,4 +1,5 @@
-/* Fuente y estilos generales */
+/* ==== ESTILOS PREMIUM FONDO NEGRO + DORADO ==== */
+
 * {
   box-sizing: border-box;
 }
@@ -6,19 +7,19 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #000; /* Fondo negro */
-  color: #d4af37; /* Dorado premium */
+  background-color: #000; /* Fondo negro total */
+  color: #d4af37;        /* Dorado premium */
 }
-
 
 /* Header */
 .header {
-  background-color: #111;
-  color: #fff;
+  background-color: #000;
+  color: #d4af37;
   padding: 15px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid #d4af37;
 }
 
 .header h1 {
@@ -26,22 +27,22 @@ body {
 }
 
 .header nav a {
-  color: #fff;
+  color: #d4af37;
   margin-left: 15px;
   text-decoration: none;
   font-weight: bold;
 }
 
 .header nav a:hover {
-  text-decoration: underline;
+  color: #fff;
 }
 
 /* Hero */
 .hero {
   text-align: center;
   padding: 60px 20px;
-  background-color: #222;
-  color: #fff;
+  background-color: #000;
+  color: #d4af37;
 }
 
 .hero h2 {
@@ -55,16 +56,17 @@ body {
 
 .btn-principal {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #ffcc00;
-  color: #111;
+  padding: 12px 25px;
+  background-color: #d4af37; /* Dorado */
+  color: #000;
   text-decoration: none;
   font-weight: bold;
   border-radius: 4px;
+  transition: 0.3s;
 }
 
 .btn-principal:hover {
-  opacity: 0.9;
+  background-color: #b8952d; /* Dorado más oscuro */
 }
 
 /* Productos */
@@ -77,6 +79,7 @@ body {
 .productos h2 {
   text-align: center;
   margin-bottom: 30px;
+  color: #d4af37;
 }
 
 .grid-productos {
@@ -86,11 +89,12 @@ body {
 }
 
 .producto {
-  background-color: #fff;
+  background-color: #111; /* Negro suave */
+  border: 1px solid #d4af37;
   border-radius: 6px;
   padding: 15px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(212,175,55,0.3); /* Sombras doradas */
 }
 
 .producto img {
@@ -100,29 +104,34 @@ body {
 
 .producto h3 {
   margin: 10px 0 5px;
+  color: #d4af37;
 }
 
 .producto p {
   margin: 0 0 10px;
+  color: #d4af37;
 }
 
 .precio {
   display: block;
   font-weight: bold;
   margin-bottom: 10px;
+  font-size: 1.1rem;
 }
 
 .producto button {
-  padding: 8px 15px;
+  padding: 10px 15px;
   border: none;
-  background-color: #111;
-  color: #fff;
+  background-color: #d4af37;
+  color: #000;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 4px;
+  transition: 0.3s;
 }
 
 .producto button:hover {
-  opacity: 0.9;
+  background-color: #b8952d;
 }
 
 /* Secciones de texto */
@@ -131,24 +140,27 @@ body {
   padding: 40px 20px;
   max-width: 800px;
   margin: 0 auto;
+  color: #d4af37;
 }
 
 .sobre-nosotros h2,
 .contacto h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #d4af37;
 }
 
 /* Footer */
 .footer {
   text-align: center;
   padding: 15px;
-  background-color: #111;
-  color: #fff;
+  background-color: #000;
+  color: #d4af37;
+  border-top: 1px solid #d4af37;
   margin-top: 30px;
 }
 
-/* Responsivo básico */
+/* Responsivo */
 @media (max-width: 600px) {
   .header {
     flex-direction: column;
@@ -159,4 +171,3 @@ body {
     margin-top: 10px;
   }
 }
-
