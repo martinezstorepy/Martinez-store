@@ -1,9 +1,9 @@
 /* ============================================
-   CATALOGO CONECTADO AL PANEL ADMIN
+   CATALOGO PÚBLICO CONECTADO AL PANEL ADMIN
    ============================================ */
 
 const NUMERO_WHATSAPP = "595982352177"; 
-const STORAGE_KEY = "productosMartinezStore"; // misma clave que admin.js
+const STORAGE_KEY = "productosMartinezStore";
 
 // obtener productos guardados desde el admin
 function obtenerProductos() {
@@ -16,18 +16,18 @@ function obtenerProductos() {
     }
 }
 
-// crear una tarjeta de producto
+// crear tarjeta de producto
 function crearTarjetaProducto(producto) {
     const card = document.createElement("div");
     card.className = "product-card";
 
     card.innerHTML = `
         <div class="product-image-wrapper">
-            <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image" />
+            <img src="${producto.imagen || 'logo.png'}" alt="${producto.nombre}" class="product-image" />
         </div>
         <h3 class="product-name">${producto.nombre}</h3>
         <p class="product-desc">${producto.descripcion || ""}</p>
-        <p class="product-price">Gs. ${Number(producto.precio).toLocaleString("es-PY")}</p>
+        <p class="product-price">Gs. ${Number(producto.precio || 0).toLocaleString("es-PY")}</p>
 
         <div class="product-sizes">
             <span class="sizes-label">Talles:</span>
@@ -45,34 +45,34 @@ function crearTarjetaProducto(producto) {
 
     let talleSeleccionado = null;
 
-    // crear botones de talles
-    if (producto.talles && Array.isArray(producto.talles)) {
-        producto.talles.forEach(talle => {
-            const btn = document.createElement("button");
-            btn.textContent = talle;
-            btn.className = "size-btn";
+    const talles = producto.talles && producto.talles.length
+        ? producto.talles
+        : ["P", "M", "G", "XL"];
 
-            btn.addEventListener("click", () => {
-                contTalles.querySelectorAll(".size-btn").forEach(b => b.classList.remove("selected"));
-                btn.classList.add("selected");
+    talles.forEach(talle => {
+        const btn = document.createElement("button");
+        btn.textContent = talle;
+        btn.className = "size-btn";
 
-                talleSeleccionado = talle;
-                textoTalle.textContent = `Talle seleccionado: ${talle}`;
-                btnWsp.disabled = false;
-            });
+        btn.addEventListener("click", () => {
+            contTalles.querySelectorAll(".size-btn").forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
 
-            contTalles.appendChild(btn);
+            talleSeleccionado = talle;
+            textoTalle.textContent = `Talle seleccionado: ${talle}`;
+            btnWsp.disabled = false;
         });
-    }
 
-    // botón WhatsApp
+        contTalles.appendChild(btn);
+    });
+
     btnWsp.addEventListener("click", () => {
         if (!talleSeleccionado) return;
 
         const mensaje = `
 Hola! Me interesa la *${producto.nombre}*.
 Talle: *${talleSeleccionado}*
-Precio: Gs. ${Number(producto.precio).toLocaleString("es-PY")}
+Precio: Gs. ${Number(producto.precio || 0).toLocaleString("es-PY")}
 
 ¿Está disponible?
         `;
@@ -84,18 +84,18 @@ Precio: Gs. ${Number(producto.precio).toLocaleString("es-PY")}
     return card;
 }
 
-// mostrar productos
+// mostrar productos en la página
 function mostrarProductos() {
     const contenedor = document.getElementById("product-list");
     const productos = obtenerProductos();
 
     contenedor.innerHTML = "";
 
-    if (productos.length === 0) {
+    if (!productos.length) {
         contenedor.innerHTML = `
             <p style="color:#b38f00; text-align:center; font-size:16px; padding:20px;">
-                No hay productos aún.  
-                <br>💡 Cargalos desde el panel administrador.
+                Aún no hay productos cargados.  
+                <br>Ingresa al panel Admin para agregar remeras.
             </p>
         `;
         return;
