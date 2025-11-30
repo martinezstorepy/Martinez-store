@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martinez Store</title>
 
-    <!-- IMPORTA EL CSS PREMIUM -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- =============================
-         HEADER / MENÚ NAVEGACIÓN
-    ============================== -->
+    <!-- HEADER -->
     <header>
         <nav class="navbar">
             <div class="logo">
@@ -23,15 +20,12 @@
                 <a href="#productos">Productos</a>
                 <a href="#sobre">Sobre nosotros</a>
                 <a href="#contacto">Contacto</a>
-                <!-- ENLACE AL PANEL ADMIN -->
                 <a href="admin.html" class="admin-link">Admin</a>
             </div>
         </nav>
     </header>
 
-    <!-- =============================
-            HERO / PORTADA
-    ============================== -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-inner">
             <img src="logo.png" class="hero-logo" alt="Martinez Store">
@@ -43,21 +37,24 @@
         </div>
     </section>
 
-    <!-- =============================
-           SECCIÓN PRODUCTOS
-    ============================== -->
+    <!-- PRODUCTOS -->
     <section id="productos" class="productos-section">
         <h2 class="section-title-center">Nuestras remeras</h2>
-        <p class="section-subtitle-center">Elegí tu modelo y seleccioná tu talle.</p>
+        <p class="section-subtitle-center">Elegí el talle y mirá todas las remeras disponibles.</p>
 
-        <div class="product-grid" id="product-list">
-            <!-- El catálogo se carga desde tienda.js -->
+        <!-- PESTAÑAS POR TALLE -->
+        <div class="size-tabs">
+            <button class="size-tab active" data-talle="P">Remeras talle P</button>
+            <button class="size-tab" data-talle="M">Remeras talle M</button>
+            <button class="size-tab" data-talle="G">Remeras talle G</button>
+            <button class="size-tab" data-talle="GG">Remeras talle GG</button>
         </div>
+
+        <!-- AQUÍ APARECEN LAS REMERAS -->
+        <div class="product-grid" id="product-list"></div>
     </section>
 
-    <!-- =============================
-           SOBRE NOSOTROS
-    ============================== -->
+    <!-- SOBRE NOSOTROS -->
     <section id="sobre" class="sobre-section">
         <h2 class="section-title-center">Sobre Martínez Store</h2>
 
@@ -67,9 +64,7 @@
         </p>
     </section>
 
-    <!-- =============================
-              CONTACTO
-    ============================== -->
+    <!-- CONTACTO -->
     <section id="contacto" class="contact-section">
         <h2 class="section-title-center">Contacto</h2>
 
@@ -80,8 +75,6 @@
         </p>
     </section>
 
-    <!-- Script del catálogo -->
     <script src="tienda.js"></script>
-
 </body>
 </html>
