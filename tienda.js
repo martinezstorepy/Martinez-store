@@ -1,30 +1,33 @@
-/* ============================================
-   CATALOGO PÚBLICO CONECTADO AL PANEL ADMIN
-   ============================================ */
+// ==============================
+// CATÁLOGO FIJO (SE VE IGUAL EN CELU Y PC)
+// ==============================
 
-const NUMERO_WHATSAPP = "595982352177"; 
-const STORAGE_KEY = "productosMartinezStore";
+const NUMERO_WHATSAPP = "595982352177";
 
-// obtener productos guardados desde el admin
-function obtenerProductos() {
-    const data = localStorage.getItem(STORAGE_KEY);
-    if (!data) return [];
-    try {
-        return JSON.parse(data) || [];
-    } catch {
-        console.error("Error al parsear productos:", err);
-        return [];
-    }
-}
+// 👉 Acá definís tus remeras (agregá más objetos al array)
+const PRODUCTOS = [
+  {
+    nombre: "Remera 100% algodón",
+    precio: 85000,
+    categoria: "P",
+    descripcion: "Remera negra 100% algodón premium.",
+    talles: ["P"],
+    imagen: "remera1.png" // nombre de la foto en tu repositorio
+  }
+  // { ...otro producto... },
+  // { ...otro producto... }
+];
 
-// crear tarjeta de producto
+// crea una tarjeta en la web
 function crearTarjetaProducto(producto) {
-    const card = document.createElement("div");
-    card.className = "product-card";
+  const card = document.createElement("div");
+  card.className = "product-card";
 
-    card.innerHTML = `
+  card.innerHTML = `
         <div class="product-image-wrapper">
-            <img src="${producto.imagen || 'logo.png'}" alt="${producto.nombre}" class="product-image" />
+            <img src="${producto.imagen || 'logo.png'}"
+                 alt="${producto.nombre}"
+                 class="product-image" />
         </div>
         <h3 class="product-name">${producto.nombre}</h3>
         <p class="product-desc">${producto.descripcion || ""}</p>
@@ -40,37 +43,39 @@ function crearTarjetaProducto(producto) {
         <button class="btn-wsp" disabled>Pedir por WhatsApp</button>
     `;
 
-    const contTalles = card.querySelector(".sizes-buttons");
-    const textoTalle = card.querySelector(".selected-size-text");
-    const btnWsp = card.querySelector(".btn-wsp");
+  const contTalles = card.querySelector(".sizes-buttons");
+  const textoTalle = card.querySelector(".selected-size-text");
+  const btnWsp = card.querySelector(".btn-wsp");
 
-    let talleSeleccionado = null;
+  let talleSeleccionado = null;
 
-    const talles = producto.talles && producto.talles.length
-        ? producto.talles
-        : ["P", "M", "G", "XL"];
+  const talles = producto.talles && producto.talles.length
+    ? producto.talles
+    : ["P", "M", "G", "XL"];
 
-    talles.forEach(talle => {
-        const btn = document.createElement("button");
-        btn.textContent = talle;
-        btn.className = "size-btn";
+  talles.forEach((talle) => {
+    const btn = document.createElement("button");
+    btn.textContent = talle;
+    btn.className = "size-btn";
 
-        btn.addEventListener("click", () => {
-            contTalles.querySelectorAll(".size-btn").forEach(b => b.classList.remove("selected"));
-            btn.classList.add("selected");
+    btn.addEventListener("click", () => {
+      contTalles
+        .querySelectorAll(".size-btn")
+        .forEach((b) => b.classList.remove("selected"));
+      btn.classList.add("selected");
 
-            talleSeleccionado = talle;
-            textoTalle.textContent = `Talle seleccionado: ${talle}`;
-            btnWsp.disabled = false;
-        });
-
-        contTalles.appendChild(btn);
+      talleSeleccionado = talle;
+      textoTalle.textContent = `Talle seleccionado: ${talle}`;
+      btnWsp.disabled = false;
     });
 
-    btnWsp.addEventListener("click", () => {
-        if (!talleSeleccionado) return;
+    contTalles.appendChild(btn);
+  });
 
-        const mensaje = `
+  btnWsp.addEventListener("click", () => {
+    if (!talleSeleccionado) return;
+
+    const mensaje = `
 Hola! Me interesa la *${producto.nombre}*.
 Talle: *${talleSeleccionado}*
 Precio: Gs. ${Number(producto.precio || 0).toLocaleString("es-PY")}
@@ -78,34 +83,33 @@ Precio: Gs. ${Number(producto.precio || 0).toLocaleString("es-PY")}
 ¿Está disponible?
         `;
 
-        const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
-        window.open(url, "_blank");
-    });
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(
+      mensaje
+    )}`;
+    window.open(url, "_blank");
+  });
 
-    return card;
+  return card;
 }
 
-// mostrar productos en la página
+// muestra todo el catálogo
 function mostrarProductos() {
-    const contenedor = document.getElementById("product-list");
-    const productos = obtenerProductos();
+  const contenedor = document.getElementById("product-list");
 
-    contenedor.innerHTML = "";
-
-    if (!productos.length) {
-        contenedor.innerHTML = `
+  if (!PRODUCTOS.length) {
+    contenedor.innerHTML = `
             <p style="color:#b38f00; text-align:center; font-size:16px; padding:20px;">
-                Aún no hay productos cargados.  
-                <br>Ingresa al panel Admin para agregar remeras.
+                Aún no hay productos cargados en el código.
             </p>
         `;
-        return;
-    }
+    return;
+  }
 
-    productos.forEach(p => {
-        const card = crearTarjetaProducto(p);
-        contenedor.appendChild(card);
-    });
+  contenedor.innerHTML = "";
+  PRODUCTOS.forEach((p) => {
+    const card = crearTarjetaProducto(p);
+    contenedor.appendChild(card);
+  });
 }
 
 mostrarProductos();
