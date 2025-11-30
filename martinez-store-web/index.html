@@ -112,5 +112,37 @@
     <p>© 2025 Martínez Store — Todos los derechos reservados.</p>
   </footer>
 
+...
+<!-- todo tu código de la página -->
+<!-- tus secciones, fotos, productos, estilos -->
+
+<!-- AQUÍ PEGA MI CÓDIGO -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD0e_HEz6v5gJ9E4USJnI8JS_HGdSd6eA",
+    authDomain: "martinez-store.firebaseapp.com",
+    projectId: "martinez-store",
+    storageBucket: "martinez-store.firebasestorage.app",
+    messagingSenderId: "148162143928",
+    appId: "1:148162143928:web:89e0f2b522028482117fcd",
+    measurementId: "G-T3S5TStNPC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+  const auth = getAuth(app);
+
+  console.log("🔥 Firebase conectado correctamente");
+</script>
+
 </body>
 </html>
+</body>
+</html>
+
