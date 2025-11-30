@@ -1,94 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Martínez Store</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martinez Store</title>
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDo0F_H2G5yvJ8EoUSnnj8SJ-HcGsdSEdA",
-      authDomain: "martinez-store.firebaseapp.com",
-      projectId: "martinez-store",
-      storageBucket: "martinez-store.appspot.com",
-      messagingSenderId: "418642143928",
-      appId: "1:418642143928:web:89cfe1b52022e84211f7cd"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    async function cargarProductos() {
-      const lista = document.getElementById("lista-productos");
-      lista.innerHTML = "";
-
-      const querySnapshot = await getDocs(collection(db, "productos"));
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-
-        lista.innerHTML += `
-          <div class="card">
-            <img src="${data.imagen}" alt="${data.nombre}">
-            <h3>${data.nombre}</h3>
-            <p>${data.descripcion}</p>
-            <div class="precio">Gs. ${data.precio}</div>
-
-            <a class="btn-wsp" target="_blank"
-              href="https://wa.me/595982352177?text=Hola%20Martínez%20Store,%20quiero%20más%20información%20sobre:%20${data.nombre}">
-              Consultar por WhatsApp
-            </a>
-          </div>
-        `;
-      });
-    }
-
-    window.onload = cargarProductos;
-  </script>
-
+    <!-- IMPORTA EL CSS PREMIUM -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="Martínez Store">
-    </div>
-    <nav>
-      <a href="#productos">Productos</a>
-      <a href="#sobre">Sobre nosotros</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <img src="logo.png" class="hero-logo">
-    <h1>Remeras con estilo para caballeros</h1>
-    <p>Diseños únicos, buena calidad y los mejores precios.</p>
-    <a class="btn" href="#productos">Ver catálogo</a>
-  </section>
+    <!-- =============================
+         HEADER / MENÚ NAVEGACIÓN
+    ============================== -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="Martinez Store">
+            </div>
 
-  <section id="productos">
-    <h2>Nuestras remeras</h2>
-    <div id="lista-productos" class="grid"></div>
-  </section>
+            <div class="nav-links">
+                <a href="#productos">Productos</a>
+                <a href="#sobre">Sobre nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </nav>
+    </header>
 
-  <section id="sobre">
-    <h2>Sobre Martínez Store</h2>
-    <p>
-      Somos una tienda de ropa para caballeros con los mejores diseños,
-      calidad superior y atención personalizada.
-    </p>
-  </section>
+    <!-- =============================
+            HERO / PORTADA
+    ============================== -->
+    <section class="hero">
+        <div class="hero-inner">
+            <img src="logo.png" class="hero-logo" alt="Martinez Store">
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>
-      WhatsApp: <a href="https://wa.me/595982352177" target="_blank">0982 352 177</a>
-    </p>
-  </section>
+            <h1 class="hero-title">Remeras con estilo para caballeros</h1>
+            <p class="hero-subtitle">Diseños únicos, buena calidad y los mejores precios.</p>
+
+            <a href="#productos" class="btn-hero">Ver catálogo</a>
+        </div>
+    </section>
+
+    <!-- =============================
+           SECCIÓN PRODUCTOS
+    ============================== -->
+    <section id="productos" class="productos-section">
+        <h2 class="section-title-center">Nuestras remeras</h2>
+        <p class="section-subtitle-center">Elegí tu modelo y seleccioná tu talle.</p>
+
+        <div class="product-grid" id="product-list">
+            <!-- El catálogo se carga desde tienda.js -->
+        </div>
+    </section>
+
+    <!-- =============================
+           SOBRE NOSOTROS
+    ============================== -->
+    <section id="sobre" class="sobre-section">
+        <h2 class="section-title-center">Sobre Martínez Store</h2>
+
+        <p class="sobre-text">
+            Somos una tienda de ropa para caballeros con los mejores diseños,
+            calidad superior y atención personalizada.
+        </p>
+    </section>
+
+    <!-- =============================
+              CONTACTO
+    ============================== -->
+    <section id="contacto" class="contact-section">
+        <h2 class="section-title-center">Contacto</h2>
+
+        <p class="contact-text">WhatsApp: 
+            <a class="contact-link" href="https://wa.me/595982352177" target="_blank">
+                0982 352 177
+            </a>
+        </p>
+    </section>
+
+    <!-- Script del catálogo -->
+    <script src="tienda.js"></script>
 
 </body>
 </html>
