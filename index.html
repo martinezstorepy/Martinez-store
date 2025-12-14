@@ -14,25 +14,26 @@
             text-align: center;
         }
 
+        /* 🔥 HEADER GRANDE */
         header {
-            padding: 25px 15px;
+            width: 100%;
             border-bottom: 2px solid #f1c40f;
+            padding-bottom: 25px;
         }
 
-        header img {
-            width: 160px;
-            max-width: 90%;
-            margin-bottom: 15px;
-
-            /* 🔥 ESTO HACE QUE EL LOGO SE VEA */
-            background: #ffffff;
-            padding: 10px;
-            border-radius: 12px;
+        /* 🔥 LOGO TIPO BANNER */
+        .logo-banner {
+            width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            background-color: #000;
         }
 
         h1 {
             color: #f1c40f;
-            margin: 10px 0 5px;
+            margin: 20px 0 10px;
             font-size: 32px;
         }
 
@@ -61,15 +62,21 @@
 <body>
 
     <header>
-        <!-- 🔴 PEGÁ ACÁ TU LINK REAL DE CLOUDINARY -->
-        <img src="PEGA_AQUI_TU_LINK_DE_CLOUDINARY" alt="Martinez Store Logo">
+        <!-- 🔴 TU LINK DE CLOUDINARY (EL QUE YA USASTE) -->
+        <img
+            src="PEGA_ACA_TU_LINK_DE_CLOUDINARY"
+            alt="Martinez Store Logo"
+            class="logo-banner"
+        >
 
         <h1>Martinez Store</h1>
         <p>Ropa para caballero · Estilo premium</p>
 
-        <a class="btn-whatsapp"
-           href="https://wa.me/595982352177"
-           target="_blank">
+        <a
+            class="btn-whatsapp"
+            href="https://wa.me/595982352177"
+            target="_blank"
+        >
             🛒 Comprar por WhatsApp
         </a>
     </header>
