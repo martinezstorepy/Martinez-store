@@ -1,80 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martinez Store</title>
-
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Martínez Store</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: gold;
+    }
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .producto {
+      border: 1px solid gold;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .producto img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .precio {
+      color: gold;
+      font-weight: bold;
+    }
+    .btn {
+      background: #25d366;
+      color: #000;
+      padding: 10px;
+      text-align: center;
+      margin-top: 10px;
+      display: block;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+  </style>
 </head>
+
 <body>
+  <h1>Martínez Store</h1>
 
-    <!-- HEADER -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="logo.png" alt="Martinez Store">
-            </div>
+  <div class="productos" id="listaProductos"></div>
 
-            <div class="nav-links">
-                <a href="#productos">Productos</a>
-                <a href="#sobre">Sobre nosotros</a>
-                <a href="#contacto">Contacto</a>
-                <a href="admin.html" class="admin-link">Admin</a>
-            </div>
-        </nav>
-    </header>
+  <script>
+    const productos = JSON.parse(localStorage.getItem("productos")) || [];
+    const contenedor = document.getElementById("listaProductos");
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-inner">
-            <img src="logo.png" class="hero-logo" alt="Martinez Store">
+    productos.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "producto";
 
-            <h1 class="hero-title">Remeras con estilo para caballeros</h1>
-            <p class="hero-subtitle">Diseños únicos, buena calidad y los mejores precios.</p>
+      card.innerHTML = `
+        <img src="${p.imageUrl}" alt="${p.nombre}">
+        <h3>${p.nombre}</h3>
+        <p>${p.descripcion || ""}</p>
+        <p>Talle: ${p.talle}</p>
+        <p class="precio">Gs. ${p.precio}</p>
+        <a class="btn" target="_blank"
+          href="https://wa.me/595XXXXXXXXX?text=Hola,%20quiero%20la%20${encodeURIComponent(p.nombre)}">
+          Pedir por WhatsApp
+        </a>
+      `;
 
-            <a href="#productos" class="btn-hero">Ver catálogo</a>
-        </div>
-    </section>
-
-    <!-- PRODUCTOS -->
-    <section id="productos" class="productos-section">
-        <h2 class="section-title-center">Nuestras remeras</h2>
-        <p class="section-subtitle-center">Elegí el talle y mirá todas las remeras disponibles.</p>
-
-        <!-- PESTAÑAS POR TALLE -->
-        <div class="size-tabs">
-            <button class="size-tab active" data-talle="P">Remeras talle P</button>
-            <button class="size-tab" data-talle="M">Remeras talle M</button>
-            <button class="size-tab" data-talle="G">Remeras talle G</button>
-            <button class="size-tab" data-talle="GG">Remeras talle GG</button>
-        </div>
-
-        <!-- AQUÍ APARECEN LAS REMERAS -->
-        <div class="product-grid" id="product-list"></div>
-    </section>
-
-    <!-- SOBRE NOSOTROS -->
-    <section id="sobre" class="sobre-section">
-        <h2 class="section-title-center">Sobre Martínez Store</h2>
-
-        <p class="sobre-text">
-            Somos una tienda de ropa para caballeros con los mejores diseños,
-            calidad superior y atención personalizada.
-        </p>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="contact-section">
-        <h2 class="section-title-center">Contacto</h2>
-
-        <p class="contact-text">WhatsApp:
-            <a class="contact-link" href="https://wa.me/595982352177" target="_blank">
-                0982 352 177
-            </a>
-        </p>
-    </section>
-
-    <script src="tienda.js"></script>
+      contenedor.appendChild(card);
+    });
+  </script>
 </body>
 </html>
