@@ -1,31 +1,59 @@
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background: #111;
+  background: #0b0b0b;
   color: #fff;
   text-align: center;
 }
 
-input, select, button {
-  padding: 10px;
-  margin: 5px;
+/* HEADER */
+.header {
+  padding: 20px;
+  border-bottom: 2px solid #d4af37;
 }
 
-button {
-  cursor: pointer;
+.logo {
+  width: 180px;
+}
+
+/* TITULOS */
+h2 {
+  margin-top: 30px;
+  color: #d4af37;
+  letter-spacing: 2px;
+}
+
+/* CATALOGO */
+#catalogo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px;
 }
 
 .card {
-  border: 1px solid #444;
-  padding: 10px;
+  background: #111;
+  border: 1px solid #d4af37;
+  padding: 15px;
   margin: 10px;
+  width: 220px;
 }
 
-img {
-  width: 200px;
+.card img {
+  width: 100%;
   border-radius: 5px;
 }
 
-a {
-  color: gold;
+.card h3 {
+  color: #d4af37;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #000;
+  background: #d4af37;
+  padding: 8px 12px;
   text-decoration: none;
+  font-weight: bold;
 }
