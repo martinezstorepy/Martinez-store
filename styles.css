@@ -1,59 +1,18 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0b0b;
-  color: #fff;
-  text-align: center;
-}
-
 /* HEADER */
 .header {
   padding: 20px;
   border-bottom: 2px solid #d4af37;
 }
 
+/* LOGO PREMIUM */
 .logo {
-  width: 180px;
-}
-
-/* TITULOS */
-h2 {
-  margin-top: 30px;
-  color: #d4af37;
-  letter-spacing: 2px;
-}
-
-/* CATALOGO */
-#catalogo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 30px;
-}
-
-.card {
-  background: #111;
-  border: 1px solid #d4af37;
-  padding: 15px;
-  margin: 10px;
-  width: 220px;
-}
-
-.card img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.card h3 {
-  color: #d4af37;
-}
-
-.card a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #000;
-  background: #d4af37;
-  padding: 8px 12px;
-  text-decoration: none;
-  font-weight: bold;
+  width: 120px;          /* tamaño chico */
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #d4af37;  /* recuadro dorado */
+  padding: 8px;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto;        /* centrado horizontal */
+  background: #0b0b0b;
 }
